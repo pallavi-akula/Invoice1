@@ -1,0 +1,40 @@
+<!-- <div class='filter'>
+    <h3>Search : <input type='text' [(ngModel)]='listFilter'/> </h3>
+  </div> -->
+  
+  <div class="container">
+      <h3 style="text-align: center">SHIPMENTS</h3>
+    <table style="text-align: center" id="shipment_list">
+      <tr>
+        <th>ID</th>
+        <th>PRODUCT</th>
+        <th>ADDRESS</th>
+        <th>STATUS</th>
+        <th>CHANGE STATUS</th>
+        <th>OPERATIONS</th>
+        <!-- <th colspan="2">OPERATIONS</th> -->
+      </tr>
+      <tr *ngFor='let shipment of shipments'>
+        <td>{{shipment.shipmentId}}</td>
+        <td>{{shipment.product.productName}}</td>
+        <td>{{shipment.address.addressLine1}}, {{shipment.address.addressLine2}}, {{shipment.address.city}}, {{shipment.address.state}}, {{shipment.address.pincode}}</td>
+        <td>{{shipment.deliveryStatus}}</td>
+        <td><div class="form-group">
+            <select class="form-control" name="shipment1" [(ngModel)]="shipment.changedDeliveryStatus">
+              <option value="ordered" *ngIf="shipment.deliveryStatus!='ordered'">ordered</option>
+              <option value="dispatched" *ngIf="shipment.deliveryStatus!='dispatched'">dispatched</option>
+              <option value="shipped" *ngIf="shipment.deliveryStatus!='shipped'">shipped</option>
+              <option value="delivered" *ngIf="shipment.deliveryStatus!='delivered'">delivered</option>
+            </select> 
+            </div></td>
+        <td><button class="button button1" value="approve"
+           (click)="updateShipment(shipment,shipment.changedDeliveryStatus)"
+           [disabled]="!shipment.changedDeliveryStatus">CHANGE STATUS</button></td>
+      </tr>
+  
+    </table>
+  </div>
+  <!-- <a role="button" href="#myModal2" data-toggle="modal" style="margin-left:auto;margin-right:auto;display:block;margin-top:22%;margin-bottom:0%"
+   class="button button5" >INVITE MERCHANT</a> -->
+  <!-- class="btn btn-lg btn-default btn3d" -->
+    
